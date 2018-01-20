@@ -145,18 +145,30 @@ public class REVDigitBoard {
 	
 	void display(double batt) { // optimized for battery voltage, needs a double like 12.34
 		int[] charz = {36,36,36,36};
-		// idk how to decimal point
-		int ten = (int)(batt/10);
-		int one = (int)(batt%10);
-		int tenth = (int)((batt*10)%10);
-		int hundredth = (int)((batt*100)%10);
+
+		int ten = (int)((batt / 10) % 10);
+		int one = (int)(batt % 10);
+		int tenth = (int)((batt * 10) % 10);
+		int hundredth = (int)((batt * 100) % 10);
+		int thousandth = (int)((batt * 1000) % 10);
 		
-		if (ten != 0) charz[0] = ten;
-		charz[1] = one;
-		charz[2] = tenth;
-		charz[3] = hundredth;
+		int dp;
 		
-		this._display(charz, 1);
+		if (ten == 0) {
+			charz[0] = one;
+			charz[1] = tenth;
+			charz[2] = hundredth;
+			charz[3] = thousandth;
+			dp = 0;
+		} else {
+			charz[0] = ten;
+			charz[1] = one;
+			charz[2] = tenth;
+			charz[3] = hundredth;
+			dp = 1;
+		}
+		
+		this._display(charz, dp);
 	}
 	
 	 void clear() {

@@ -40,6 +40,9 @@ public class Robot extends TimedRobot {
 	private int voltageRefreshCounter = 0;
 	private static final int voltageRefreshCount = 10;
 	
+	private int potRefreshCounter = 0;
+	private static final int potRefreshCount = 10;
+	
 	private boolean buttonA = false;
 	private boolean buttonB = false;
 
@@ -117,8 +120,6 @@ public class Robot extends TimedRobot {
 	
 	@Override
 	public void robotPeriodic() {
-		double pot = digitBoard.getPot();
-		
 		if (digitBoard.getButtonA() != buttonA)
 		{
 			buttonA = !buttonA;
@@ -129,10 +130,22 @@ public class Robot extends TimedRobot {
 			}
 		}
 		
+		if (digitBoard.getButtonB() != buttonB)
+		{
+			buttonB = !buttonB;
+		}
+
+		
 		if (buttonA) {
 			digitBoard.display(options[optionIndex]);
-		}
-		else {
+		} else if (buttonB) {
+			if (++potRefreshCounter > potRefreshCount) {
+				potRefreshCounter = 0;
+			}
+			if (potRefreshCounter == 0) {
+				digitBoard.display(digitBoard.getPot());
+			}
+		} else {
 			if (++voltageRefreshCounter > voltageRefreshCount) {
 				voltageRefreshCounter = 0;
 			}
@@ -140,12 +153,7 @@ public class Robot extends TimedRobot {
 				digitBoard.display(RobotController.getBatteryVoltage());
 			}
 		}
-
-		if (digitBoard.getButtonB() != buttonB)
-		{
-			buttonB = !buttonB;
-		}
-}
+	}
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -160,6 +168,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		System.out.printf("   Option: %s\n", options[optionIndex]);
+		System.out.printf("Game Data: %s\n", DriverStation.getInstance().getGameSpecificMessage());
+		System.out.flush();
+		
 		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
