@@ -7,42 +7,53 @@
 
 package org.usfirst.frc.team6352.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team6352.robot.Robot;
 
 /**
- * An example command.  You can replace me with your own command.
+ * An example command. You can replace me with your own command.
  */
-public class ExampleCommand extends Command {
-	public ExampleCommand() {
+public class ControlNidecMotorWithGamepad extends Command
+{
+	public ControlNidecMotorWithGamepad()
+	{
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kExampleSubsystem);
+		requires(Robot.nidecMotor);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
-	protected void initialize() {
+	protected void initialize()
+	{
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
-	protected void execute() {
+	protected void execute()
+	{
+		Robot.nidecMotor.set(Robot.oi.gameController.getX(Hand.kLeft));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
-	protected boolean isFinished() {
+	protected boolean isFinished()
+	{
 		return false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
-	protected void end() {
+	protected void end()
+	{
+		Robot.nidecMotor.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
-	protected void interrupted() {
+	protected void interrupted()
+	{
+		end();
 	}
 }
