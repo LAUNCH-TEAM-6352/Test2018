@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.io.Console;
 
 import org.usfirst.frc.team6352.robot.commands.ControlNidecMotorWithGamepad;
+import org.usfirst.frc.team6352.robot.subsystems.CanControlledMotor;
 import org.usfirst.frc.team6352.robot.subsystems.NidecMotor;
 
 /**
@@ -33,6 +34,7 @@ import org.usfirst.frc.team6352.robot.subsystems.NidecMotor;
 public class Robot extends TimedRobot
 {
 	public static final NidecMotor nidecMotor = new NidecMotor();
+	public static final CanControlledMotor canControlledMotor = new CanControlledMotor();
 	public static OI oi;
 
 	private REVDigitBoard digitBoard;

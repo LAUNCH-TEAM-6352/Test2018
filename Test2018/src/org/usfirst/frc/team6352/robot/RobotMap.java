@@ -24,6 +24,23 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
+	// The following are used for testing the Nidec brushless motor:
 	public static int nidecMotorPwmChannel = 9;
 	public static int nidecMotorDioChannel = 9;
+	
+	// The following is used for testing the new CAN motor control library from CTR:
+	public static final int canControlledMotorDeviceId = 2;
+	
+	// The following indicates if we are running the competition robot:
+	public static final boolean isCompetitionRobot = true;
+	
+	// The PWM channels for the drive system:
+	public static final int leftDrivePwmChannel = 0;
+	public static final int rightDrivePwmChannel = 1;
+	
+	// The CAN device ids for the drive system
+	public static final int leftDriveCanDeviceId = 1;
+	public static final int rightDriveCanDeviceId = 2;
+	
+
 }
