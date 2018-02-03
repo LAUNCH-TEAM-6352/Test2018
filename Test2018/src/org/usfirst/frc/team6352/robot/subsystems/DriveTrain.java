@@ -1,16 +1,15 @@
 package org.usfirst.frc.team6352.robot.subsystems;
 
 import org.usfirst.frc.team6352.robot.RobotMap;
+import org.usfirst.frc.team6352.robot.commands.DriveWithGamepadController;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -21,6 +20,7 @@ public class DriveTrain extends Subsystem
 {
 	SpeedController leftMotor;
 	SpeedController rightMotor;
+	SpeedController centerMotor;
 	
 	DifferentialDrive drive;
 	
@@ -30,29 +30,36 @@ public class DriveTrain extends Subsystem
 	
 	public DriveTrain()
 	{
-		leftMotor = RobotMap.isCompetitionRobot
-				? new WPI_TalonSRX(RobotMap.leftDriveCanDeviceId)
-				: new Spark(RobotMap.leftDrivePwmChannel);
-				
-		rightMotor = RobotMap.isCompetitionRobot
-				? new WPI_TalonSRX(RobotMap.rightDriveCanDeviceId)
-				: new Spark(RobotMap.rightDrivePwmChannel);
-				
-		drive = new DifferentialDrive(leftMotor, rightMotor);
+		if (RobotMap.isCompetitionRobot)
+		{
+			leftMotor = new WPI_TalonSRX(RobotMap.leftDriveCanDeviceId);
+			rightMotor = new WPI_TalonSRX(RobotMap.rightDriveCanDeviceId);
+			centerMotor = new WPI_TalonSRX(RobotMap.centerDriveCanDeviceId);
+		}
+		else
+		{
+			leftMotor = new Spark(RobotMap.leftDrivePwmChannel);
+			rightMotor = new Spark(RobotMap.rightDrivePwmChannel);
+			centerMotor = null;
+		}
 		
 		// Determine if any motors need to be set inverted:
+		rightMotor.setInverted(true);
 		leftMotor.setInverted(true);
+				
+		drive = new DifferentialDrive(leftMotor, rightMotor);
 	}
 
 	public void stop()
 	{
 		drive.stopMotor();
+		centerMotor.stopMotor();
 	}
 	
 	public void initDefaultCommand()
 	{
 		// Set the default command for a subsystem here.
-		//setDefaultCommand(new DriveWithJoysticks());
+		setDefaultCommand(new DriveWithGamepadController());
 	}
 	
 	/**
@@ -71,7 +78,16 @@ public class DriveTrain extends Subsystem
 	 */
 	public void driveTank(Joystick leftStick, Joystick rightStick)
 	{
-//		drive.tankDrive(leftStick, rightStick);
+		drive.tankDrive(leftStick.getY(), rightStick.getY());
+	}
+	
+	public void driveTank(XboxController gameController)
+	{
+		drive.tankDrive(gameController.getY(Hand.kLeft), gameController.getY(Hand.kRight));
+		if (centerMotor != null)
+		{
+			centerMotor.set(gameController.getTriggerAxis(Hand.kLeft) - gameController.getTriggerAxis(Hand.kRight));
+		}
 	}
 	
 	/**
@@ -81,12 +97,21 @@ public class DriveTrain extends Subsystem
 	 */
 	public void driveCaution(Joystick leftStick, Joystick rightStick)
 	{
-		 setLeftRightMotorOutputs(leftStick.getY() - rightStick.getX(), leftStick.getY() + rightStick.getX());
+		setLeftRightMotorOutputs(leftStick.getY() - rightStick.getX(), leftStick.getY() + rightStick.getX());
+	}
+	
+	public void driveCaution(XboxController gameController)
+	{
+		setLeftRightMotorOutputs(gameController.getY(Hand.kLeft) - gameController.getX(Hand.kRight), gameController.getY(Hand.kLeft) + gameController.getX(Hand.kRight));
+		if (centerMotor != null)
+		{
+			centerMotor.set(gameController.getTriggerAxis(Hand.kLeft) - gameController.getTriggerAxis(Hand.kRight));
+		}
 	}
 	
 	public void setLeftRightMotorOutputs(double left, double right)
 	{
-		drive.tankDrive(left, right);
+		drive.tankDrive(left, right, true);
 	}
 	
 	/**

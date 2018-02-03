@@ -29,7 +29,7 @@ public class RobotMap {
 	public static int nidecMotorDioChannel = 9;
 	
 	// The following is used for testing the new CAN motor control library from CTR:
-	public static final int canControlledMotorDeviceId = 2;
+	public static final int canControlledMotorDeviceId = 9;
 	
 	// The following indicates if we are running the competition robot:
 	public static final boolean isCompetitionRobot = true;
@@ -39,8 +39,9 @@ public class RobotMap {
 	public static final int rightDrivePwmChannel = 1;
 	
 	// The CAN device ids for the drive system
-	public static final int leftDriveCanDeviceId = 1;
-	public static final int rightDriveCanDeviceId = 2;
+	public static final int leftDriveCanDeviceId = 0;
+	public static final int rightDriveCanDeviceId = 1;
+	public static final int centerDriveCanDeviceId = 2;
 	
 
 }

@@ -21,12 +21,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class CanControlledMotor extends Subsystem
 {
-	WPI_TalonSRX motor;
+	WPI_TalonSRX motor;//
 	
 	public CanControlledMotor()
 	{
-		motor = new WPI_TalonSRX(RobotMap.canControlledMotorDeviceId);
-		motor.stopMotor();
+		//motor = new WPI_TalonSRX(RobotMap.canControlledMotorDeviceId);
+		//motor.stopMotor();
 	}
 	
 	// Put methods for controlling this subsystem
@@ -35,7 +35,7 @@ public class CanControlledMotor extends Subsystem
 	public void initDefaultCommand()
 	{
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new ControlCanControlledMotorWithGamepad());
+		//setDefaultCommand(new ControlCanControlledMotorWithGamepad());
 	}
 	
 	public void set(double speed)

@@ -32,7 +32,7 @@ public class NidecMotor extends Subsystem
 	public void initDefaultCommand()
 	{
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new ControlNidecMotorWithGamepad());
+		//setDefaultCommand(new ControlNidecMotorWithGamepad());
 	}
 	
 	public void set(double speed)
