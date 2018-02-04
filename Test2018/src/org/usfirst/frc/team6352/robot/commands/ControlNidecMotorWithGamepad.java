@@ -32,7 +32,7 @@ public class ControlNidecMotorWithGamepad extends Command
 	@Override
 	protected void execute()
 	{
-		Robot.nidecMotor.set(Robot.oi.gameController.getX(Hand.kLeft));
+		Robot.nidecMotor.set(Robot.oi.gameController1.getX(Hand.kLeft));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

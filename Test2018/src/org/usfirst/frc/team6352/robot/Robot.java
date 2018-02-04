@@ -24,6 +24,7 @@ import org.usfirst.frc.team6352.robot.commands.ControlNidecMotorWithGamepad;
 import org.usfirst.frc.team6352.robot.subsystems.CanControlledMotor;
 import org.usfirst.frc.team6352.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team6352.robot.subsystems.NidecMotor;
+import org.usfirst.frc.team6352.robot.subsystems.NidecMotorReporter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,8 +36,14 @@ import org.usfirst.frc.team6352.robot.subsystems.NidecMotor;
 public class Robot extends TimedRobot
 {
 	public static final NidecMotor nidecMotor = new NidecMotor();
-	public static final CanControlledMotor canControlledMotor = new CanControlledMotor();
-	public static final DriveTrain driveTrain = new DriveTrain();
+	public static final NidecMotorReporter nidecMotorReporter = new NidecMotorReporter();
+	
+	//public static final CanControlledMotor canControlledMotor = new CanControlledMotor();
+	public static final CanControlledMotor canControlledMotor = null;
+	
+	//public static final DriveTrain driveTrain = new DriveTrain();
+	public static final DriveTrain driveTrain = null;
+	
 	public static OI oi;
 
 	private REVDigitBoard digitBoard;

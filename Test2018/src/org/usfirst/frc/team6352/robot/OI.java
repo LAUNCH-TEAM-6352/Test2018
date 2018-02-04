@@ -43,4 +43,5 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public XboxController gameController = new XboxController(0);
+	public XboxController gameController1 = new XboxController(1);
 }

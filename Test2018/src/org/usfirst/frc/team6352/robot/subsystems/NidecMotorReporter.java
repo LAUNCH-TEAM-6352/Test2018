@@ -9,21 +9,27 @@ package org.usfirst.frc.team6352.robot.subsystems;
 
 import org.usfirst.frc.team6352.robot.RobotMap;
 import org.usfirst.frc.team6352.robot.commands.ControlNidecMotorWithGamepad;
+import org.usfirst.frc.team6352.robot.commands.ReportNidecMotor;
 
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.NidecBrushless;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class NidecMotor extends Subsystem
+public class NidecMotorReporter extends Subsystem
 {
-	NidecBrushless motor;
+	DigitalInput direction = new DigitalInput(RobotMap.nidecMotorDirChannel);
+	Counter tachometer = new Counter(new DigitalInput(RobotMap.nidecMotorTacChannel));
 	
-	public NidecMotor()
+	private final static double pulsesPerRevolution = 15;
+		
+	public NidecMotorReporter()
 	{
-		motor = new NidecBrushless(RobotMap.nidecMotorPwmChannel, RobotMap.nidecMotorDioChannel);
-		motor.stopMotor();
+		tachometer.setDistancePerPulse(1.0 / pulsesPerRevolution);
 	}
 	
 	// Put methods for controlling this subsystem
@@ -32,16 +38,12 @@ public class NidecMotor extends Subsystem
 	public void initDefaultCommand()
 	{
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new ControlNidecMotorWithGamepad());
+		setDefaultCommand(new ReportNidecMotor());
 	}
 	
-	public void set(double speed)
+	public void report()
 	{
-		motor.set(speed);
-	}
-	
-	public void stop()
-	{
-		motor.stopMotor();
+		SmartDashboard.putBoolean("Nidec Dir:", direction.get());
+		SmartDashboard.putNumber("Nidec rpm:", tachometer.getRate() * 60.0 * (direction.get() ? 1 : -1));
 	}
 }

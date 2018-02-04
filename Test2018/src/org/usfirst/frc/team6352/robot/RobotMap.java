@@ -27,6 +27,8 @@ public class RobotMap {
 	// The following are used for testing the Nidec brushless motor:
 	public static int nidecMotorPwmChannel = 9;
 	public static int nidecMotorDioChannel = 9;
+	public static int nidecMotorTacChannel = 8;
+	public static int nidecMotorDirChannel = 7;
 	
 	// The following is used for testing the new CAN motor control library from CTR:
 	public static final int canControlledMotorDeviceId = 9;
