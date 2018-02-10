@@ -35,14 +35,16 @@ import org.usfirst.frc.team6352.robot.subsystems.NidecMotorReporter;
  */
 public class Robot extends TimedRobot
 {
-	public static final NidecMotor nidecMotor = new NidecMotor();
-	public static final NidecMotorReporter nidecMotorReporter = new NidecMotorReporter();
+	//public static final NidecMotor nidecMotor = new NidecMotor();
+	//public static final NidecMotorReporter nidecMotorReporter = new NidecMotorReporter();
+	public static final NidecMotor nidecMotor = null;
+	public static final NidecMotorReporter nidecMotorReporter = null;
 	
 	//public static final CanControlledMotor canControlledMotor = new CanControlledMotor();
 	public static final CanControlledMotor canControlledMotor = null;
 	
-	//public static final DriveTrain driveTrain = new DriveTrain();
-	public static final DriveTrain driveTrain = null;
+	public static final DriveTrain driveTrain = new DriveTrain();
+	//public static final DriveTrain driveTrain = null;
 	
 	public static OI oi;
 
@@ -74,11 +76,11 @@ public class Robot extends TimedRobot
 	public void robotInit()
 	{
 		oi = new OI();
-		m_chooser.addDefault("Default Auto", new ControlNidecMotorWithGamepad());
+		//m_chooser.addDefault("Default Auto", new ControlNidecMotorWithGamepad());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		//SmartDashboard.putData("Auto mode", m_chooser);
 
-		scanMXPI2C();
+		//scanMXPI2C();
 
 		digitBoard = new REVDigitBoard();
 		// new DigitBoardThread().start();

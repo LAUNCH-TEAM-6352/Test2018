@@ -41,9 +41,9 @@ public class RobotMap {
 	public static final int rightDrivePwmChannel = 1;
 	
 	// The CAN device ids for the drive system
-	public static final int leftDriveCanDeviceId = 0;
-	public static final int rightDriveCanDeviceId = 1;
-	public static final int centerDriveCanDeviceId = 2;
+	public static final int leftDriveCanDeviceId = 1;
+	public static final int rightDriveCanDeviceId = 2;
+	public static final int centerDriveCanDeviceId = 3;
 	
 
 }
