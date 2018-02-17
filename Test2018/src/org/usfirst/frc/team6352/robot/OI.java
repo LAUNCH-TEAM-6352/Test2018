@@ -49,10 +49,13 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public XboxController gameController = new XboxController(0);
-	public XboxController gameController1 = new XboxController(1);
+//	public XboxController gameController1 = new XboxController(1);
+	public XboxController gameController1 = null;
 	
-	public Joystick joystickLeft = new Joystick(2);
-	public Joystick joystickRight = new Joystick(3);
+//	public Joystick joystickLeft = new Joystick(2);
+//	public Joystick joystickRight = new Joystick(3);
+	public Joystick joystickLeft = null;
+	public Joystick joystickRight = null;
 	
 	// Buttons:
 	
@@ -73,8 +76,11 @@ public class OI {
 
 	
 	// SmartDashboard keys:
-	public final static String dashboardPowerCubeSuckSpeed = "Cube Suck Speed";
-	public final static String dashboardPowerCubeSpitSpeed = "Cube Spit Speed";
+	public final static String dashboardPowerCubeIntakeSuckSpeed = "Cube Suck Speed";
+	public final static String dashboardPowerCubeIntakeSpitSpeed = "Cube Spit Speed";
+
+	public final static String dashboardPowerCubeLiftUpSpeed = "Cube Up Speed";
+	public final static String dashboardPowerCubeLiftDownSpeed = "Cube Down Speed";
 
 	public final static String dashboardSimpleAutoDriveSpeed = "Simple Auto Speed";
 	public final static String dashboardSimpleAutoDriveCurve = "Simple Auto Curve";
@@ -84,12 +90,15 @@ public class OI {
 	public OI()
 	{
 		// Bind buttons to commands:
-		powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeSuckSpeed));
-		powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeSpitSpeed));
+		powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
+		powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
 
 		// Put default values on SmartDashboard:
-		SmartDashboard.putNumber(dashboardPowerCubeSuckSpeed, -1.0);
-		SmartDashboard.putNumber(dashboardPowerCubeSpitSpeed, 1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeIntakeSuckSpeed, 0.5);
+		SmartDashboard.putNumber(dashboardPowerCubeIntakeSpitSpeed, -1.0);
+		
+		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSpeed, 1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, -1.0);
 		
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveSpeed, -0.5);
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveCurve, 0.0);

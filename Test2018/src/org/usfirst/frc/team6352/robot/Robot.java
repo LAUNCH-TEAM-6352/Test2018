@@ -52,6 +52,7 @@ public class Robot extends TimedRobot
 	public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
 	
 //	public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
+	public static final PowerCubeLift powerCubeLift = null;
 	
 	public static OI oi;
 
