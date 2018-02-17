@@ -53,7 +53,8 @@ public class MovePowerCubeLiftWithGamepad extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		Robot.powerCubeLift.set(motorSpeed);
+		// TODO: Add code to read POV from gamepad and send proper speed
+		Robot.powerCubeLift.set(0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
