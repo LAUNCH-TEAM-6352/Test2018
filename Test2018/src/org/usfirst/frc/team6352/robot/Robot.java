@@ -21,10 +21,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.io.Console;
 
 import org.usfirst.frc.team6352.robot.commands.ControlNidecMotorWithGamepad;
+import org.usfirst.frc.team6352.robot.commands.DriveAutonomousSimple;
 import org.usfirst.frc.team6352.robot.subsystems.CanControlledMotor;
 import org.usfirst.frc.team6352.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team6352.robot.subsystems.NidecMotor;
 import org.usfirst.frc.team6352.robot.subsystems.NidecMotorReporter;
+import org.usfirst.frc.team6352.robot.subsystems.PowerCubeIntake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,6 +47,8 @@ public class Robot extends TimedRobot
 	
 	public static final DriveTrain driveTrain = new DriveTrain();
 	//public static final DriveTrain driveTrain = null;
+	
+	public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
 	
 	public static OI oi;
 
@@ -194,6 +198,11 @@ public class Robot extends TimedRobot
 		System.out.flush();
 
 		m_autonomousCommand = m_chooser.getSelected();
+		
+		m_autonomousCommand = new DriveAutonomousSimple(
+				OI.dashboardSimpleAutoDriveSpeed,
+				OI.dashboardSimpleAutoDriveCurve,
+				OI.dashboardSimpleAutoDriveTimeout);
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");

@@ -45,5 +45,9 @@ public class RobotMap {
 	public static final int rightDriveCanDeviceId = 2;
 	public static final int centerDriveCanDeviceId = 3;
 	
+	// The CAN device ids for the power cube intake
+	public static final int leftIntakeCanDeviceId = 4;
+	public static final int rightIntakeCanDeviceId = 4;
+	
 
 }

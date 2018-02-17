@@ -7,7 +7,13 @@
 
 package org.usfirst.frc.team6352.robot;
 
+import org.usfirst.frc.team6352.robot.commands.SuckInOrSpitOutPowerCube;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -44,4 +50,52 @@ public class OI {
 	
 	public XboxController gameController = new XboxController(0);
 	public XboxController gameController1 = new XboxController(1);
+	
+	public Joystick joystickLeft = new Joystick(2);
+	public Joystick joystickRight = new Joystick(3);
+	
+	// Buttons:
+	
+	// Give meaningful names to the game controller buttons:
+	public final static int gameControllerButtonA = 1;
+	public final static int gameControllerButtonB = 2;
+	public final static int gameControllerButtonX = 3;
+	public final static int gameControllerButtonY = 4;
+	public final static int gameControllerButtonBumperLeft = 5;
+	public final static int gameControllerButtonBumperRight = 6;
+	public final static int gameControllerButtonBack = 7;
+	public final static int gameControllerButtonStart = 8;
+	public final static int gameControllerButtonStickLeft = 9;
+	public final static int gameControllerButtonStickRight = 10;
+	
+	Button powerCubeSuckButton = new JoystickButton(gameController, gameControllerButtonB);
+	Button powerCubeSpitButton = new JoystickButton(gameController, gameControllerButtonX);
+
+	
+	// SmartDashboard keys:
+	public final static String dashboardPowerCubeSuckSpeed = "Cube Suck Speed";
+	public final static String dashboardPowerCubeSpitSpeed = "Cube Spit Speed";
+
+	public final static String dashboardSimpleAutoDriveSpeed = "Simple Auto Speed";
+	public final static String dashboardSimpleAutoDriveCurve = "Simple Auto Curve";
+	public final static String dashboardSimpleAutoDriveTimeout = "Simple Auto Timeout";
+
+	// Constructor:
+	public OI()
+	{
+		// Bind buttons to commands:
+		powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeSuckSpeed));
+		powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeSpitSpeed));
+
+		// Put default values on SmartDashboard:
+		SmartDashboard.putNumber(dashboardPowerCubeSuckSpeed, -1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeSpitSpeed, 1.0);
+		
+		SmartDashboard.putNumber(dashboardSimpleAutoDriveSpeed, -0.5);
+		SmartDashboard.putNumber(dashboardSimpleAutoDriveCurve, 0.0);
+		SmartDashboard.putNumber(dashboardSimpleAutoDriveTimeout, 1.5);
+
+	}
+
+
 }
