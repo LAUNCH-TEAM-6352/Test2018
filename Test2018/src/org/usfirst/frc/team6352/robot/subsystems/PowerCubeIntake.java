@@ -21,8 +21,6 @@ public class PowerCubeIntake extends Subsystem
 	SpeedController leftMotor;
 	SpeedController rightMotor;
 	
-	DifferentialDrive drive;
-	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
@@ -41,8 +39,8 @@ public class PowerCubeIntake extends Subsystem
 		}
 		
 		// Determine if any motors need to be set inverted:
-		rightMotor.setInverted(true);
-		leftMotor.setInverted(true);
+//		rightMotor.setInverted(true);
+//		leftMotor.setInverted(true);
 	}
 
 	// Stop both motors

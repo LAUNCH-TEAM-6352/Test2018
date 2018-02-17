@@ -27,6 +27,7 @@ import org.usfirst.frc.team6352.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team6352.robot.subsystems.NidecMotor;
 import org.usfirst.frc.team6352.robot.subsystems.NidecMotorReporter;
 import org.usfirst.frc.team6352.robot.subsystems.PowerCubeIntake;
+import org.usfirst.frc.team6352.robot.subsystems.PowerCubeLift;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -49,6 +50,8 @@ public class Robot extends TimedRobot
 	//public static final DriveTrain driveTrain = null;
 	
 	public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
+	
+//	public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
 	
 	public static OI oi;
 
