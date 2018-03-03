@@ -21,10 +21,6 @@ public class PowerCubeIntake extends Subsystem
 	SpeedController leftMotor;
 	SpeedController rightMotor;
 	
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-	
-	
 	public PowerCubeIntake()
 	{
 		if (RobotMap.isCompetitionRobot)
@@ -72,7 +68,5 @@ public class PowerCubeIntake extends Subsystem
 	
 	public void initDefaultCommand()
 	{
-		// Set the default command for a subsystem here.
-		//setDefaultCommand(new DoSomething());
 	}
 }

@@ -46,13 +46,14 @@ public class Robot extends TimedRobot
 	//public static final CanControlledMotor canControlledMotor = new CanControlledMotor();
 	public static final CanControlledMotor canControlledMotor = null;
 	
-	public static final DriveTrain driveTrain = new DriveTrain();
-	//public static final DriveTrain driveTrain = null;
+	//public static final DriveTrain driveTrain = new DriveTrain();
+	public static final DriveTrain driveTrain = null;
 	
-	public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
+	//public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
+	public static final PowerCubeIntake powerCubeIntake = null;
 	
-//	public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
-	public static final PowerCubeLift powerCubeLift = null;
+	public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
+	//public static final PowerCubeLift powerCubeLift = null;
 	
 	public static OI oi;
 
@@ -67,7 +68,7 @@ public class Robot extends TimedRobot
 	private boolean buttonA = false;
 	private boolean buttonB = false;
 
-	private static final String[] options = { "LEFT", "RGHT" };
+	private static final String[] options = { "LEFT", "RGHT", "SMPL" };
 	private int optionIndex = 0;
 
 	Command m_autonomousCommand;

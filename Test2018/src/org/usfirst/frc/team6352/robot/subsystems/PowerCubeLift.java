@@ -1,17 +1,14 @@
 package org.usfirst.frc.team6352.robot.subsystems;
 
+import org.usfirst.frc.team6352.robot.OI;
 import org.usfirst.frc.team6352.robot.RobotMap;
-import org.usfirst.frc.team6352.robot.commands.DriveWithGamepadController;
+import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftWithGamepadPov;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * The subsystem that lifts the power cube.
@@ -22,17 +19,12 @@ public class PowerCubeLift extends Subsystem
 	
 	public PowerCubeLift()
 	{
-		if (RobotMap.isCompetitionRobot)
-		{
-			motor = new Spark(0);
-		}
-		else
-		{
-			motor = new Spark(0);
-		}
+		motor = RobotMap.isCompetitionRobot
+				? new Spark(RobotMap.powerCubeLiftPwmChannel)
+				: new WPI_TalonSRX(RobotMap.canControlledMotorDeviceId);
 	}
 
-	// Stop rhe motor
+	// Stop the motor
 	public void stop()
 	{
 		motor.stopMotor();
@@ -57,7 +49,6 @@ public class PowerCubeLift extends Subsystem
 	
 	public void initDefaultCommand()
 	{
-		// Set the default command for a subsystem here.
-		//setDefaultCommand(new DoSomething());
+		setDefaultCommand(new MovePowerCubeLiftWithGamepadPov(OI.dashboardPowerCubeLiftUpFastSpeed, OI.dashboardPowerCubeLiftUpSlowSpeed, OI.dashboardPowerCubeLiftDownFastSpeed, OI.dashboardPowerCubeLiftDownSlowSpeed));
 	}
 }

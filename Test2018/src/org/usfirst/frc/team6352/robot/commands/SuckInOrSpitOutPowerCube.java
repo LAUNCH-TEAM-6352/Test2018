@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * A command for controlling the power cube intake 
  */
 public class SuckInOrSpitOutPowerCube extends Command
 {
@@ -26,10 +26,10 @@ public class SuckInOrSpitOutPowerCube extends Command
 		this.motorSpeedKey = motorSpeedKey;
 	}
 	
-	public SuckInOrSpitOutPowerCube(double suckSpeed)
+	public SuckInOrSpitOutPowerCube(double motorSpeed)
 	{
 		this();
-		this.motorSpeed = suckSpeed;
+		this.motorSpeed = motorSpeed;
 	}
 	
 	// Called just before this Command runs the first time
