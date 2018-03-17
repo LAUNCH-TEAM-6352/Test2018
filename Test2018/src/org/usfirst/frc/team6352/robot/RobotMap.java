@@ -28,8 +28,8 @@ public class RobotMap
 	public static int nidecMotorDirChannel = 7;
 
 	// The PWM channels for the drive system:
-	public static final int leftDrivePwmChannel = 0;
-	public static final int rightDrivePwmChannel = 1;
+	public static final int leftDrivePwmChannel = 1;
+	public static final int rightDrivePwmChannel = 0;
 
 	// The CAN device ids for the drive system:
 	public static final int leftDriveCanDeviceId = 1;
@@ -41,5 +41,5 @@ public class RobotMap
 	public static final int rightIntakeCanDeviceId = 5;
 
 	// The PWM channel for the power cube lift:
-	public static final int powerCubeLiftPwmChannel = 8;
+	public static final int powerCubeLiftPwmChannel = 2;
 }

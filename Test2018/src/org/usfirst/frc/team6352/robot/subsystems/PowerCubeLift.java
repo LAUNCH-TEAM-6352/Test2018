@@ -6,6 +6,7 @@ import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftWithGamepadPov;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.NidecBrushless;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,9 +20,8 @@ public class PowerCubeLift extends Subsystem
 	
 	public PowerCubeLift()
 	{
-		motor = RobotMap.isCompetitionRobot
-				? new Spark(RobotMap.powerCubeLiftPwmChannel)
-				: new WPI_TalonSRX(RobotMap.canControlledMotorDeviceId);
+		//motor = new NidecBrushless(RobotMap.nidecMotorPwmChannel, RobotMap.nidecMotorDioChannel);
+		motor = new Spark(RobotMap.powerCubeLiftPwmChannel);
 	}
 
 	// Stop the motor
@@ -49,6 +49,6 @@ public class PowerCubeLift extends Subsystem
 	
 	public void initDefaultCommand()
 	{
-		setDefaultCommand(new MovePowerCubeLiftWithGamepadPov(OI.dashboardPowerCubeLiftUpFastSpeed, OI.dashboardPowerCubeLiftUpSlowSpeed, OI.dashboardPowerCubeLiftDownFastSpeed, OI.dashboardPowerCubeLiftDownSlowSpeed));
+		//setDefaultCommand(new MovePowerCubeLiftWithGamepadPov(OI.dashboardPowerCubeLiftUpFastSpeed, OI.dashboardPowerCubeLiftUpSlowSpeed, OI.dashboardPowerCubeLiftDownFastSpeed, OI.dashboardPowerCubeLiftDownSlowSpeed));
 	}
 }

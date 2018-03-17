@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team6352.robot;
 
+import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLift;
 import org.usfirst.frc.team6352.robot.commands.SuckInOrSpitOutPowerCube;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -73,11 +74,16 @@ public class OI {
 	
 	Button powerCubeSuckButton = new JoystickButton(gameController, gameControllerButtonB);
 	Button powerCubeSpitButton = new JoystickButton(gameController, gameControllerButtonX);
-
+	
+	Button PowerCubeLiftUpButton   = new JoystickButton(gameController, gameControllerButtonY);
+	Button PowerCubeLiftDownButton = new JoystickButton(gameController, gameControllerButtonA);
 	
 	// SmartDashboard keys:
 	public final static String dashboardPowerCubeIntakeSuckSpeed = "Cube Suck Speed";
 	public final static String dashboardPowerCubeIntakeSpitSpeed = "Cube Spit Speed";
+
+	public final static String dashboardPowerCubeLiftUpSpeed = "Cube Up Speed";
+	public final static String dashboardPowerCubeLiftDownSpeed = "Cube Down Speed";
 
 	public final static String dashboardPowerCubeLiftUpFastSpeed = "Cube Up Fast Speed";
 	public final static String dashboardPowerCubeLiftUpSlowSpeed = "Cube Up Slow Speed";
@@ -95,9 +101,15 @@ public class OI {
 		//powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
 		//powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
 
+		PowerCubeLiftUpButton.whileHeld(new MovePowerCubeLift(dashboardPowerCubeLiftUpSpeed));
+		PowerCubeLiftDownButton.whileHeld(new MovePowerCubeLift(dashboardPowerCubeLiftDownSpeed));
+
 		// Put default values on SmartDashboard:
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSuckSpeed, 0.5);
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSpitSpeed, -1.0);
+		
+		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSpeed, -1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, 1.0);
 		
 		SmartDashboard.putNumber(dashboardPowerCubeLiftUpFastSpeed, 1.0);
 		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSlowSpeed, 0.5);

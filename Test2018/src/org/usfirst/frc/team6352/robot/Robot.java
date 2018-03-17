@@ -46,8 +46,8 @@ public class Robot extends TimedRobot
 	//public static final CanControlledMotor canControlledMotor = new CanControlledMotor();
 	public static final CanControlledMotor canControlledMotor = null;
 	
-	//public static final DriveTrain driveTrain = new DriveTrain();
-	public static final DriveTrain driveTrain = null;
+	public static final DriveTrain driveTrain = new DriveTrain();
+	//public static final DriveTrain driveTrain = null;
 	
 	//public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
 	public static final PowerCubeIntake powerCubeIntake = null;
