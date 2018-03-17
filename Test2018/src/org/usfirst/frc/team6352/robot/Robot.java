@@ -8,6 +8,7 @@
 package org.usfirst.frc.team6352.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.RobotController;
@@ -24,6 +25,7 @@ import org.usfirst.frc.team6352.robot.commands.ControlNidecMotorWithGamepad;
 import org.usfirst.frc.team6352.robot.commands.DriveAutonomousSimple;
 import org.usfirst.frc.team6352.robot.subsystems.CanControlledMotor;
 import org.usfirst.frc.team6352.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team6352.robot.subsystems.PowerCubeLiftEncoder;
 import org.usfirst.frc.team6352.robot.subsystems.NidecMotor;
 import org.usfirst.frc.team6352.robot.subsystems.NidecMotorReporter;
 import org.usfirst.frc.team6352.robot.subsystems.PowerCubeIntake;
@@ -38,6 +40,9 @@ import org.usfirst.frc.team6352.robot.subsystems.PowerCubeLift;
  */
 public class Robot extends TimedRobot
 {
+	// The following deal with the power cube lift encoder:
+	public static final PowerCubeLiftEncoder powerCubeLiftEncoder = new PowerCubeLiftEncoder();
+	
 	//public static final NidecMotor nidecMotor = new NidecMotor();
 	//public static final NidecMotorReporter nidecMotorReporter = new NidecMotorReporter();
 	public static final NidecMotor nidecMotor = null;
@@ -52,8 +57,8 @@ public class Robot extends TimedRobot
 	//public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
 	public static final PowerCubeIntake powerCubeIntake = null;
 	
-	public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
-	//public static final PowerCubeLift powerCubeLift = null;
+	//public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
+	public static final PowerCubeLift powerCubeLift = null;
 	
 	public static OI oi;
 
@@ -102,7 +107,6 @@ public class Robot extends TimedRobot
 		 * i2c.writeBulk(osc); Timer.delay(.01); i2c.writeBulk(bright);
 		 * Timer.delay(.01); i2c.writeBulk(blink); Timer.delay(.01);
 		 ***/
-
 	}
 
 	private void scanMXPI2C()

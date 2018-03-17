@@ -8,6 +8,7 @@
 package org.usfirst.frc.team6352.robot;
 
 import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLift;
+import org.usfirst.frc.team6352.robot.commands.ResetLiftEncoder;
 import org.usfirst.frc.team6352.robot.commands.SuckInOrSpitOutPowerCube;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -101,8 +102,8 @@ public class OI {
 		//powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
 		//powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
 
-		PowerCubeLiftUpButton.whileHeld(new MovePowerCubeLift(dashboardPowerCubeLiftUpSpeed));
-		PowerCubeLiftDownButton.whileHeld(new MovePowerCubeLift(dashboardPowerCubeLiftDownSpeed));
+		//PowerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed));
+		//PowerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed));
 
 		// Put default values on SmartDashboard:
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSuckSpeed, 0.5);
@@ -119,6 +120,8 @@ public class OI {
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveSpeed, -0.5);
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveCurve, 0.0);
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveTimeout, 1.5);
+		
+		SmartDashboard.putData(new ResetLiftEncoder());
 
 	}
 

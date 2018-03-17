@@ -42,4 +42,12 @@ public class RobotMap
 
 	// The PWM channel for the power cube lift:
 	public static final int powerCubeLiftPwmChannel = 2;
+	
+	// The digital channels and other stuff dealing with the lift Encoder:
+	public static final int liftEncoderChannelA = 9;
+	public static final int liftEncoderChannelB = 8;
+	public static final int liftEncoderChannelX = 7;
+	public static final int liftEncoderPulsesPerRev = 2048;
+	public static final double liftEncoderMaxDistance = 5000.0;
+	public static final double liftEncoderMinDistance = -5000.0;
 }
