@@ -50,4 +50,5 @@ public class RobotMap
 	public static final int liftEncoderPulsesPerRev = 2048;
 	public static final double liftEncoderMaxDistance = 5000.0;
 	public static final double liftEncoderMinDistance = -5000.0;
+	public static final boolean liftEncoderIsReversed = true;
 }

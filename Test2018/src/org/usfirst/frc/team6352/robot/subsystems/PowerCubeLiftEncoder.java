@@ -18,10 +18,16 @@ public class PowerCubeLiftEncoder extends Subsystem
 	public PowerCubeLiftEncoder()
 	{
 		// Create the encoder:
-		encoder = new Encoder(RobotMap.liftEncoderChannelA, RobotMap.liftEncoderChannelB);
+		encoder = new Encoder(
+				RobotMap.liftEncoderChannelA,
+				RobotMap.liftEncoderChannelB,
+				RobotMap.liftEncoderIsReversed);
 		
 		// This sets each unit of distance to one revolution:
 		encoder.setDistancePerPulse(1.0 / RobotMap.liftEncoderPulsesPerRev);
+		
+		// Reset the encoder:
+		reset();
 	}
 	
 	public void initDefaultCommand()

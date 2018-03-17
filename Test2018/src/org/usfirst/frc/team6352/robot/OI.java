@@ -8,6 +8,8 @@
 package org.usfirst.frc.team6352.robot;
 
 import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLift;
+import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftDown;
+import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftUp;
 import org.usfirst.frc.team6352.robot.commands.ResetLiftEncoder;
 import org.usfirst.frc.team6352.robot.commands.SuckInOrSpitOutPowerCube;
 
@@ -102,15 +104,15 @@ public class OI {
 		//powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
 		//powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
 
-		//PowerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed));
-		//PowerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed));
+		PowerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed));
+		PowerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed));
 
 		// Put default values on SmartDashboard:
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSuckSpeed, 0.5);
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSpitSpeed, -1.0);
 		
-		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSpeed, -1.0);
-		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, 1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSpeed, 1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, -1.0);
 		
 		SmartDashboard.putNumber(dashboardPowerCubeLiftUpFastSpeed, 1.0);
 		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSlowSpeed, 0.5);
