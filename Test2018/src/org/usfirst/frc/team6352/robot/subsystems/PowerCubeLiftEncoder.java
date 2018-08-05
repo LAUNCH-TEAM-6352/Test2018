@@ -1,6 +1,5 @@
 package org.usfirst.frc.team6352.robot.subsystems;
 
-import org.usfirst.frc.team6352.robot.Robot;
 import org.usfirst.frc.team6352.robot.RobotMap;
 import org.usfirst.frc.team6352.robot.commands.ReportLiftEncoder;
 

@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team6352.robot;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -35,6 +37,10 @@ public class RobotMap
 	public static final int leftDriveCanDeviceId = 1;
 	public static final int rightDriveCanDeviceId = 2;
 	public static final int centerDriveCanDeviceId = 3;
+	
+	// The PWM channels for the power cube intake on the practice robot:
+	public static final int leftIntakePwmChannel = 4;
+	public static final int rightIntakePwmChannel = 3;
 
 	// The CAN device ids for the power cube intake:
 	public static final int leftIntakeCanDeviceId = 4;
@@ -51,4 +57,7 @@ public class RobotMap
 	public static final double liftEncoderMaxDistance = 5000.0;
 	public static final double liftEncoderMinDistance = -5000.0;
 	public static final boolean liftEncoderIsReversed = true;
+	
+	// The rumble type to use:
+	public static final RumbleType rumbleType = RumbleType.kRightRumble;
 }

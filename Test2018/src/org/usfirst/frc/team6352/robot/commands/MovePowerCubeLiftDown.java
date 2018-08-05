@@ -3,6 +3,7 @@ package org.usfirst.frc.team6352.robot.commands;
 import org.usfirst.frc.team6352.robot.Robot;
 import org.usfirst.frc.team6352.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,8 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class MovePowerCubeLiftDown extends Command
 {
 	private String motorSpeedKey = null;
+	private String rumblePowerKey = null;
 	
 	private double motorSpeed;
+	private double rumblePower;
 	
 	
 	public MovePowerCubeLiftDown()
@@ -21,16 +24,18 @@ public class MovePowerCubeLiftDown extends Command
 		requires(Robot.powerCubeLift);
 	}
 	
-	public MovePowerCubeLiftDown(String motorSpeedKey)
+	public MovePowerCubeLiftDown(String motorSpeedKey, String rumblePowerKey)
 	{
 		this();
 		this.motorSpeedKey = motorSpeedKey;
+		this.rumblePowerKey = rumblePowerKey;
 	}
 	
-	public MovePowerCubeLiftDown(double motorSpeed)
+	public MovePowerCubeLiftDown(double motorSpeed, double rumblePower)
 	{
 		this();
 		this.motorSpeed = motorSpeed;
+		this.rumblePower = rumblePower;
 	}
 	
 	// Called just before this Command runs the first time
@@ -39,7 +44,11 @@ public class MovePowerCubeLiftDown extends Command
 	{
 		if (motorSpeedKey != null)
 		{
-			motorSpeed = SmartDashboard.getNumber(motorSpeedKey, 0);
+			motorSpeed = SmartDashboard.getNumber(motorSpeedKey, 1.0);
+		}
+		if (rumblePowerKey != null)
+		{
+			rumblePower = SmartDashboard.getNumber(rumblePowerKey, 1.0);
 		}
 	}
 
@@ -47,8 +56,16 @@ public class MovePowerCubeLiftDown extends Command
 	protected void execute()
 	{
 		// This will not let us move the lift lower than the min distance:
-		Robot.powerCubeLift.set(
-				Robot.powerCubeLiftEncoder.getDistance() > RobotMap.liftEncoderMinDistance ? motorSpeed : 0);
+		if (Robot.powerCubeLiftEncoder.getDistance() > RobotMap.liftEncoderMinDistance)
+		{
+			Robot.powerCubeLift.set(motorSpeed);
+			Robot.oi.gameController.setRumble(RobotMap.rumbleType, 0);
+		}
+		else
+		{
+			Robot.powerCubeLift.stop();
+			Robot.oi.gameController.setRumble(RobotMap.rumbleType, rumblePower);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -61,6 +78,7 @@ public class MovePowerCubeLiftDown extends Command
 	protected void end()
 	{
 		Robot.powerCubeLift.stop();
+		Robot.oi.gameController.setRumble(RobotMap.rumbleType, 0);
 	}
 
 	// Called when another command which requires one or more of the same

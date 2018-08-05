@@ -12,7 +12,9 @@ import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftDown;
 import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftUp;
 import org.usfirst.frc.team6352.robot.commands.ResetLiftEncoder;
 import org.usfirst.frc.team6352.robot.commands.SuckInOrSpitOutPowerCube;
+import org.usfirst.frc.team6352.robot.commands.TestRumble;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -78,8 +80,11 @@ public class OI {
 	Button powerCubeSuckButton = new JoystickButton(gameController, gameControllerButtonB);
 	Button powerCubeSpitButton = new JoystickButton(gameController, gameControllerButtonX);
 	
-	Button PowerCubeLiftUpButton   = new JoystickButton(gameController, gameControllerButtonY);
-	Button PowerCubeLiftDownButton = new JoystickButton(gameController, gameControllerButtonA);
+	Button powerCubeLiftUpButton   = new JoystickButton(gameController, gameControllerButtonY);
+	Button powerCubeLiftDownButton = new JoystickButton(gameController, gameControllerButtonA);
+	
+	Button rumbleLeftButton = new JoystickButton(gameController, gameControllerButtonBumperLeft);
+	Button rumbleRightButton = new JoystickButton(gameController, gameControllerButtonBumperRight);
 	
 	// SmartDashboard keys:
 	public final static String dashboardPowerCubeIntakeSuckSpeed = "Cube Suck Speed";
@@ -96,6 +101,8 @@ public class OI {
 	public final static String dashboardSimpleAutoDriveSpeed = "Simple Auto Speed";
 	public final static String dashboardSimpleAutoDriveCurve = "Simple Auto Curve";
 	public final static String dashboardSimpleAutoDriveTimeout = "Simple Auto Timeout";
+	
+	public final static String dashboardRumblePower = "Rumble Power";
 
 	// Constructor:
 	public OI()
@@ -104,8 +111,11 @@ public class OI {
 		//powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
 		//powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
 
-		PowerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed));
-		PowerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed));
+		powerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed, dashboardRumblePower));
+		powerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed, dashboardRumblePower));
+		
+		rumbleLeftButton.whileHeld(new TestRumble(RumbleType.kLeftRumble, .5));
+		rumbleRightButton.whileHeld(new TestRumble(RumbleType.kRightRumble, .75));
 
 		// Put default values on SmartDashboard:
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSuckSpeed, 0.5);
@@ -122,6 +132,8 @@ public class OI {
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveSpeed, -0.5);
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveCurve, 0.0);
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveTimeout, 1.5);
+		
+		SmartDashboard.putNumber(dashboardRumblePower, 0.5);
 		
 		SmartDashboard.putData(new ResetLiftEncoder());
 

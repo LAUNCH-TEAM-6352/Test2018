@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class MovePowerCubeLiftUp extends Command
 {
 	private String motorSpeedKey = null;
+	private String rumblePowerKey = null;
 	
 	private double motorSpeed;
+	private double rumblePower;
 	
 	
 	public MovePowerCubeLiftUp()
@@ -21,16 +23,18 @@ public class MovePowerCubeLiftUp extends Command
 		requires(Robot.powerCubeLift);
 	}
 	
-	public MovePowerCubeLiftUp(String motorSpeedKey)
+	public MovePowerCubeLiftUp(String motorSpeedKey, String rumblePowerKey)
 	{
 		this();
 		this.motorSpeedKey = motorSpeedKey;
+		this.rumblePowerKey = rumblePowerKey;
 	}
 	
-	public MovePowerCubeLiftUp(double motorSpeed)
+	public MovePowerCubeLiftUp(double motorSpeed, double rumblePower)
 	{
 		this();
 		this.motorSpeed = motorSpeed;
+		this.rumblePower = rumblePower;
 	}
 	
 	// Called just before this Command runs the first time
@@ -41,14 +45,26 @@ public class MovePowerCubeLiftUp extends Command
 		{
 			motorSpeed = SmartDashboard.getNumber(motorSpeedKey, 0);
 		}
+		if (rumblePowerKey != null)
+		{
+			rumblePower = SmartDashboard.getNumber(rumblePowerKey, 1.0);
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
 		// This will not let us move the lift higher than the max distance:
-		Robot.powerCubeLift.set(
-				Robot.powerCubeLiftEncoder.getDistance() < RobotMap.liftEncoderMaxDistance ? motorSpeed : 0);
+		if (Robot.powerCubeLiftEncoder.getDistance() < RobotMap.liftEncoderMaxDistance)
+		{
+			Robot.powerCubeLift.set(motorSpeed);
+			Robot.oi.gameController.setRumble(RobotMap.rumbleType, 0);
+		}
+		else
+		{
+			Robot.powerCubeLift.stop();
+			Robot.oi.gameController.setRumble(RobotMap.rumbleType, rumblePower);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -61,6 +77,7 @@ public class MovePowerCubeLiftUp extends Command
 	protected void end()
 	{
 		Robot.powerCubeLift.stop();
+		Robot.oi.gameController.setRumble(RobotMap.rumbleType, 0);
 	}
 
 	// Called when another command which requires one or more of the same
